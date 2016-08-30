@@ -1,0 +1,13 @@
+meteored:
+  image: meteord_dsg-cp
+  volumes:
+    - "~/app/opt:/opt"
+  links:
+    - mongo
+  ports:
+    - "4003:80"
+
+mongo:
+  image: mongo:3.2.7
+  ports:
+    - "27017:27017"

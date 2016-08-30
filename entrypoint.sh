@@ -81,13 +81,13 @@ if [ -e "${METEOR_DIR}" ]; then
    # Check Meteor version
    echo "Checking Meteor version..."
    RELEASE=$(cat .meteor/release | cut -f2 -d'@')
-   set +e # Allow the next command to fail
-   semver -r '>=1.3.1' $(echo $RELEASE |cut -d'.' -f1-3)
-   if [ $? -ne 0 ]; then
-      echo "Application's Meteor version ($RELEASE) is less than 1.3.1; please use ulexus/meteor:legacy"
-      exit 1
-   fi
-   set -e
+   # set +e # Allow the next command to fail
+   # semver -r '>=1.3.1' $(echo $RELEASE |cut -d'.' -f1-3)
+   # if [ $? -ne 0 ]; then
+   #    echo "Application's Meteor version ($RELEASE) is less than 1.3.1; please use ulexus/meteor:legacy"
+   #    exit 1
+   # fi
+   # set -e
 
    # Download Meteor installer
    echo "Downloading Meteor install script..."
@@ -102,6 +102,7 @@ if [ -e "${METEOR_DIR}" ]; then
    # Bundle the Meteor app
    echo "Building the bundle...(this may take a while)"
    mkdir -p ${APP_DIR}
+   meteor npm install
    meteor build --directory ${APP_DIR}
 fi
 
@@ -126,13 +127,13 @@ if [ -e ${BUNDLE_DIR}/programs/server ]; then
 
    # Check Meteor version
    echo "Checking Meteor version..."
-   set +e # Allow the next command to fail
-   semver -r '>=1.3.1' $(cat config.json | jq .meteorRelease | tr -d '"' | cut -f2 -d'@' | cut -d'.' -f1-3)
-   if [ $? -ne 0 ]; then
-      echo "Application's Meteor version is less than 1.3.1; please use ulexus/meteor:legacy"
-      exit 1
-   fi
-   set -e
+   # set +e # Allow the next command to fail
+   # semver -r '>=1.3.1' $(cat config.json | jq .meteorRelease | tr -d '"' | cut -f2 -d'@' | cut -d'.' -f1-3)
+   # if [ $? -ne 0 ]; then
+   #    echo "Application's Meteor version is less than 1.3.1; please use ulexus/meteor:legacy"
+   #    exit 1
+   # fi
+   # set -e
 
    echo "Installing NPM prerequisites..."
    # Install all NPM packages

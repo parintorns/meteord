@@ -1,5 +1,5 @@
 meteored:
-  image: meteord_dsg-cp
+  image: meteord
   volumes:
     - "~/app/opt:/opt"
   links:

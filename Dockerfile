@@ -7,6 +7,7 @@ RUN apt-get update \
       nano \
       git \
       build-essential \
+      python-all \
   && curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - \
   && apt-get install -y nodejs \
   && apt-get clean \
@@ -19,7 +20,7 @@ RUN apt-get update \
 # Add known_hosts file
 # COPY known_hosts /root/.ssh/known_hosts
 
-EXPOSE 80
+EXPOSE 3000-5000
 
 # ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["/bin/bash"]
